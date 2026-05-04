@@ -18,7 +18,7 @@ This project is a REST API built using Spring Boot for managing users and their 
 * Spring Boot
 * Spring Data JPA
 * Hibernate
-* MySQL
+* PostgreSQL
 
 ## 📡 API Endpoints
 
