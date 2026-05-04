@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>SpringBootProject-2</artifactId>
+	<artifactId>User-Order-Management-System</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringBootProject-2</name>
+	<name>User-Order-Management-System</name>
 	<description />
 	<url />
 	<licenses>

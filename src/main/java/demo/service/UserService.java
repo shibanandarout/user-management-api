@@ -20,7 +20,7 @@ public class UserService {
 	private UserRepository userRepository;
 
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-	
+
 
 	public User saveuser(User user) {
 
@@ -102,37 +102,38 @@ public class UserService {
 	// Save DTO
 	public UserDto saveUser(UserDto dto) {
 
-		User user = new User();
-		user.setName(dto.getName());
+	    logger.info("Request received to save user: {}", dto.getName());
 
-		List<Order> orders = dto.getOrderDtos().stream().map(o -> {
-			Order order = new Order();
-			order.setProduct(o.getProduct());
-			order.setPrice(o.getPrice());
-			order.setUser(user);
-			return order;
-		}).toList();
+	    User user = new User();
+	    user.setName(dto.getName());
 
-		// DTO-->Entity
-		user.setOrders(orders);
+	    List<Order> orders = dto.getOrderDtos().stream().map(o -> {
+	        Order order = new Order();
+	        order.setProduct(o.getProduct());
+	        order.setPrice(o.getPrice());
+	        order.setUser(user);
+	        return order;
+	    }).toList();
 
-		User saved = userRepository.save(user);
+	    user.setOrders(orders);
 
-		// Convert back to DTO
-		UserDto response = new UserDto();
-		response.setName(saved.getName());
+	    User saved = userRepository.save(user);
 
-		// 🔥 ADD THIS PART
-		List<OrderDto> orderDtos = saved.getOrders().stream().map(o -> {
-			OrderDto od = new OrderDto();
-			od.setProduct(o.getProduct());
-			od.setPrice(o.getPrice());
-			return od;
-		}).toList();
+	    logger.info("User saved successfully with id: {}", saved.getId());
 
-		response.setOrderDtos(orderDtos);
+	    UserDto response = new UserDto();
+	    response.setName(saved.getName());
 
-		return response;
+	    List<OrderDto> orderDtos = saved.getOrders().stream().map(o -> {
+	        OrderDto od = new OrderDto();
+	        od.setProduct(o.getProduct());
+	        od.setPrice(o.getPrice());
+	        return od;
+	    }).toList();
+
+	    response.setOrderDtos(orderDtos);
+
+	    return response;
 	}
 
 	// GetAll DTO
