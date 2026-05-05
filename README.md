@@ -2,7 +2,8 @@
 
 ## 📌 Overview
 
-This project is a REST API built using Spring Boot for managing users and their orders.
+A backend RESTful API built using Spring Boot to manage users and their associated orders. 
+The application follows a layered architecture and implements robust validation and global exception handling to ensure reliable and scalable API performance.
 
 ## 🚀 Features
 
