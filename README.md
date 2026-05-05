@@ -7,11 +7,12 @@ The application follows a layered architecture and implements robust validation 
 
 ## 🚀 Features
 
-* CRUD operations (Create, Read, Update, Delete)
-* DTO-based architecture
-* Validation using annotations
-* Global Exception Handling
-* Nested object validation
+• CRUD operations for User and Order management  
+• DTO-based architecture to separate API and database layers  
+• Input validation to ensure data integrity  
+• Global exception handling for consistent error responses  
+• Nested object validation for handling complex request structures  
+• RESTful API design following best practices  
 
 ## 🛠️ Tech Stack
 
