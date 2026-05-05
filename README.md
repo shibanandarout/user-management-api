@@ -23,31 +23,15 @@ The application follows a layered architecture and implements robust validation 
 
 ## 📡 API Endpoints
 
-### Create User
+## 📌 API Endpoints
 
-POST /userdto
-
-### Get All Users
-
-GET /userdto
-
-### Get User by ID
-
-GET /userdto/{id}
-
-### Update User
-
-PUT /userdto/{id}
-
-### Patch User
-
-PATCH /userdto/{id}
-
-### Delete User
-
-DELETE /userdto/{id}
-
-## ⚙️ Validation
+| Method | Endpoint        | Description          |
+|--------|---------------|----------------------|
+| GET    | /users        | Get all users        |
+| GET    | /users/{id}   | Get user by ID       |
+| POST   | /users        | Create new user      |
+| PATCH  | /users/{id}   | Update user partially|
+| DELETE | /users/{id}   | Delete user          |
 
 * Name should not be empty
 * Product should not be empty
