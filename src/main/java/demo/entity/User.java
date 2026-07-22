@@ -14,42 +14,61 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "users")   // ✅ FIX: avoid reserved keyword "user"
+@Table(name = "users") // ✅ FIX: avoid reserved keyword "user"
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-    private String name;
+	private String name;
+	private String email;
 
-    @JsonManagedReference   // ✅ Parent side
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Order> orders=new ArrayList<>();
+	private String password;
 
-    // getters and setters
+	@JsonManagedReference // ✅ Parent side
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Order> orders = new ArrayList<>();
 
-    public int getId() {
-        return id;
-    }
+	// getters and setters
 
-    public void setId(int id) {
-        this.id = id;
-    }   
+	public int getId() {
+		return id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }   
+	public String getName() {
+		return name;
+	}
 
-    public List<Order> getOrders() {
-        return orders;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
 }
