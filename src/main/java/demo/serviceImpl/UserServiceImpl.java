@@ -1,12 +1,15 @@
 package demo.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import demo.dto.OrderDto;
 import demo.dto.UserDto;
+import demo.entity.Order;
 import demo.entity.User;
 import demo.exception.UserNotFoundException;
 import demo.repository.UserRepository;
@@ -38,7 +41,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<UserDto> getAllUsersDto() {
 
-		return userRepository.findAll().stream().map(this::convertToDto).collect(Collectors.toList());
+		return userRepository.findAll()
+				.stream()
+				.map(this::convertToDto)
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -115,6 +121,22 @@ public class UserServiceImpl implements UserService {
 		user.setEmail(dto.getEmail());
 		user.setPassword(dto.getPassword());
 
+		List<Order> orders = new ArrayList<>();
+
+		for (OrderDto orderDto : dto.getOrderDtos()) {
+
+			Order order = new Order();
+
+			order.setProduct(orderDto.getProduct());
+			order.setPrice(orderDto.getPrice());
+
+			order.setUser(user);
+
+			orders.add(order);
+		}
+
+		user.setOrders(orders);
+
 		return user;
 	}
 
@@ -124,6 +146,20 @@ public class UserServiceImpl implements UserService {
 
 		dto.setName(user.getName());
 		dto.setEmail(user.getEmail());
+
+		List<OrderDto> orderDtos = new ArrayList<>();
+
+		for (Order order : user.getOrders()) {
+
+			OrderDto orderDto = new OrderDto();
+
+			orderDto.setProduct(order.getProduct());
+			orderDto.setPrice(order.getPrice());
+
+			orderDtos.add(orderDto);
+		}
+
+		dto.setOrderDtos(orderDtos);
 
 		// Password is intentionally not returned
 
